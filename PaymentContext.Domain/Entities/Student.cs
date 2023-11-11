@@ -11,10 +11,37 @@ namespace PaymentContext.Domain.Entities
 {
     public class Student
     {
-        public string Name { get;  set; }
-        public string LastName { get; set; }
-        public string Document { get;  set; }
-        public string Email { get; set; }
-        public string Address { get;  set; }
+        private IList<Subscription> _subscriptions;
+
+        public Student(string name, string lastName, string document, string email, string address)
+        {
+            Name = name;
+            LastName = lastName;
+            Document = document;
+            Email = email;
+            Address = address;
+            _subscriptions= new List<Subscription>();
+        }
+
+        public string Name { get; private set; }
+        public string LastName { get; private set; }
+        public string Document { get; private set; }
+        public string Email { get; private set; }
+        public string Address { get; private set; }
+        public IReadOnlyCollection<Subscription> Subscriptions { get { return _subscriptions.ToArray(); }}
+
+        public void AddSubscription(Subscription subscription)
+        {
+            //regra 1...
+
+            //regra 2...
+
+            foreach(var sub in Subscriptions)
+            {
+                sub.Active = false;
+            }
+
+            _subscriptions.Add(subscription);
+        }
     }
 }
