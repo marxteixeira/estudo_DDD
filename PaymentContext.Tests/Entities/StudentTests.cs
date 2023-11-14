@@ -1,4 +1,6 @@
 ﻿using PaymentContext.Domain.Entities;
+using PaymentContext.Domain.Enums;
+using PaymentContext.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +13,18 @@ namespace PaymentContext.Tests.Entities
     public class StudentTests
     {
         [TestMethod]
-        public void TestMethod()
+        public void AdicionarAssinatura()
         {
-            //var student = new Student();
+            var name = new Name("Marx", "Teixeira");
+            var document = new Document("12345678984",EDocumentType.CPF);
+            var email = new Email("email@email.com");
+            var address = new Address("","","","","","","");
+            var student = new Student(name, document, email, address);
+
+            foreach(var notif in student.Notifications)
+            {
+                notif.Message;
+            }
         }
     }
 }

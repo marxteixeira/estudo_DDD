@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -15,17 +14,19 @@ namespace PaymentContext.Domain.Entities
     {
         private IList<Subscription> _subscriptions;
 
-        public Student(Name name, string lastName, string document, Email email, Address address)
+        public Student(Name name, Document document, Email email, Address address)
         {
             Name = name;
             Document = document;
             Email = email;
             Address = address;
             _subscriptions= new List<Subscription>();
+
+            AddNotifications(name, document, email, address);
         }
 
         public Name Name { get; private set; }
-        public string Document { get; private set; }
+        public Document Document { get; private set; }
         public Email Email { get; private set; }
         public Address Address { get; private set; }
         public IReadOnlyCollection<Subscription> Subscriptions { get { return _subscriptions.ToArray(); }}
