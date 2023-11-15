@@ -23,7 +23,7 @@ namespace PaymentContext.Tests.Entities
 
             foreach(var notif in student.Notifications)
             {
-                notif.Message;
+               
             }
         }
     }
