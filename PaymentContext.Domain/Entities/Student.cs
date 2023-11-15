@@ -1,4 +1,5 @@
-﻿using PaymentContext.Domain.ValueObjects;
+﻿using Flunt.Validations;
+using PaymentContext.Domain.ValueObjects;
 using PaymentContext.Shared.Entities;
 using System;
 using System.Collections.Generic;
@@ -37,9 +38,23 @@ namespace PaymentContext.Domain.Entities
 
             //regra 2...
 
+            bool flag = false;
+
             foreach(var sub in Subscriptions)
             {
-                sub.Inactivate ();
+                if (sub.Active)
+                {
+                    flag= true;
+                }
+            }
+
+            /*AddNotifications(new Contract()
+                .Requires()
+                .IsFalse(flag, "Student.Subscriptions", "Existe uma assinatura ativa."));*/ //poderia ter trabalhado com esse modelo, mas vamos usar o de baixo.
+
+            if(flag)
+            {
+                AddNotification("Student.Subscriptions", "Existe uma assinatura ativa.");
             }
 
             _subscriptions.Add(subscription);
