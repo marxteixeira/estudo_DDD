@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PaymentContext.Domain.Enums;
+using PaymentContext.Domain.ValueObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,27 +12,37 @@ namespace PaymentContext.Tests.ValueObjects
     public class DocumentTests
     {
         [TestMethod]
-        public void DeveRetornarErroCPFInvalido()
+        [DataTestMethod]
+        [DataRow("10101010101")]
+        [DataRow("10101010102")]
+        [DataRow("10101010103")]
+        public void DeveRetornarErroCPFInvalido(string cpf)
         {
-            Assert.Fail();
+            var doc = new Document(cpf, EDocumentType.CPF);
+
+            Assert.IsTrue(doc.Invalid);
         }
 
         [TestMethod]
         public void DeveRetornarSucessoCPFValido()
         {
-            Assert.Fail();
+            var doc = new Document("00000000000", EDocumentType.CPF);
+
+            Assert.IsTrue(doc.Valid);
         }
 
         [TestMethod]
         public void DeveRetornarErroCNPJInvalido()
         {
-            Assert.Fail();
+            var doc = new Document("1111111111111", EDocumentType.CNPJ);
+            Assert.IsTrue(doc.Invalid);
         }
 
         [TestMethod]
         public void DeveRetornarSucessoCNPJvalido()
         {
-            Assert.Fail();
+            var doc = new Document("11111111111111", EDocumentType.CNPJ);
+            Assert.IsTrue(doc.Valid);
         }
     }
 }
