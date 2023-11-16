@@ -10,3 +10,6 @@ C:\balta\8 - Modelegam de Domínios Ricos\estudo_DDD\PaymentContext.Domain\obj\D
 C:\balta\8 - Modelegam de Domínios Ricos\estudo_DDD\PaymentContext.Domain\obj\Debug\net6.0\refint\PaymentContext.Domain.dll
 C:\balta\8 - Modelegam de Domínios Ricos\estudo_DDD\PaymentContext.Domain\obj\Debug\net6.0\PaymentContext.Domain.pdb
 C:\balta\8 - Modelegam de Domínios Ricos\estudo_DDD\PaymentContext.Domain\obj\Debug\net6.0\ref\PaymentContext.Domain.dll
+C:\balta\8 - Modelegam de Domínios Ricos\estudo_DDD\PaymentContext.Domain\bin\Debug\net6.0\PaymentContext.Shared.dll
+C:\balta\8 - Modelegam de Domínios Ricos\estudo_DDD\PaymentContext.Domain\bin\Debug\net6.0\PaymentContext.Shared.pdb
+C:\balta\8 - Modelegam de Domínios Ricos\estudo_DDD\PaymentContext.Domain\obj\Debug\net6.0\PaymentContext.Domain.csproj.CopyComplete

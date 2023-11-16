@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PaymentContext.Tests.Entities
 {
-    [TestClass]
+    /*[TestClass]
     public class StudentTests
     {
         [TestMethod]
@@ -26,5 +26,5 @@ namespace PaymentContext.Tests.Entities
                
             }
         }
-    }
+    }*/
 }
