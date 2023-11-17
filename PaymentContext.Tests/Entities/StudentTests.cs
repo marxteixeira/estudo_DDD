@@ -12,6 +12,7 @@ namespace PaymentContext.Tests.Entities
     [TestClass]
     public class StudentTests
     {
+        private readonly Subscription _subscription;
         private readonly Name _name;
         private readonly Email _email;
         private readonly Document _document;
@@ -25,38 +26,37 @@ namespace PaymentContext.Tests.Entities
             _email = new Email("batman@dc.com");
             _address = new Address("Rua 1", "1234", "Bairro Legal", "Gotham", "SP", "BR", "13400000");
             _student = new Student(_name, _document, _email,_address);
+            _subscription = new Subscription(null);
 
         }
 
         [TestMethod]
         public void ShouldReturnErrorWhenHadActiveSubscription()
         {
-            var name = new Name("Fulano","Silva");
-            var document = new Document("11111111111",EDocumentType.CPF);
-            var email = new Email("email@email.com");
-            var address = new Address("Rua Tal","23","Bairro","Cataguases","MG","BR","23233333");
-
-            var subscription = new Subscription(DateTime.Now.AddDays(5));
-            var payment = new PayPalPayment("2234", DateTime.Now, DateTime.Now.AddDays(5), 10, 10, "Fulano", document, address, email);
+            var subscription = new Subscription(null);
+            var payment = new PayPalPayment("12345678", DateTime.Now, DateTime.Now.AddDays(5), 10, 10, "WAYNE CORP", _document, _address, _email);
             subscription.AddPayment(payment);
-            var student = new Student(name, document, email, address);
+            _student.AddSubscription(_subscription);
+            _student.AddSubscription(_subscription);
 
-            student.AddSubscription(subscription);
-            student.AddSubscription(subscription);
-
-            Assert.IsTrue(student.Invalid);
+            Assert.IsTrue(_student.Invalid);
         }
 
         [TestMethod]
         public void ShouldReturnSuccessWhenHadNoActiveSubscription()
         {
-            Assert.Fail();
+            _student.AddSubscription(_subscription);
+            Assert.IsTrue(_student.Invalid);
         }
 
         [TestMethod]
         public void DeveRetornarErroQuandoAssinaturaNaoTemPagamentos()
         {
-            Assert.Fail();
+            var subscription = new Subscription(null);
+            var payment = new PayPalPayment("12345678", DateTime.Now, DateTime.Now.AddDays(5), 10, 10, "WAYNE CORP", _document, _address, _email);
+            subscription.AddPayment(payment);
+            _student.AddSubscription(subscription);
+            Assert.IsTrue(_student.Valid);
         }
     }
 }
