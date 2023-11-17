@@ -48,14 +48,12 @@ namespace PaymentContext.Domain.Entities
                 }
             }
 
-            /*AddNotifications(new Contract()
+            AddNotifications(new Contract()
                 .Requires()
-                .IsFalse(flag, "Student.Subscriptions", "Existe uma assinatura ativa."));*/ //poderia ter trabalhado com esse modelo, mas vamos usar o de baixo.
+                .IsFalse(flag, "Student.Subscriptions", "Existe uma assinatura ativa.")
+                .IsGreaterThan(0, subscription.Payments.Count,"Student.Subscription","Esta assinatura não possui pagamentos."));
 
-            if(flag)
-            {
-                AddNotification("Student.Subscriptions", "Existe uma assinatura ativa.");
-            }
+          
 
             _subscriptions.Add(subscription);
         }
