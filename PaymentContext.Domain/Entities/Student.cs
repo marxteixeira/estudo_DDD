@@ -51,7 +51,7 @@ namespace PaymentContext.Domain.Entities
             AddNotifications(new Contract()
                 .Requires()
                 .IsFalse(flag, "Student.Subscriptions", "Existe uma assinatura ativa.")
-                .IsGreaterThan(0, subscription.Payments.Count,"Student.Subscription","Esta assinatura não possui pagamentos."));
+                .AreEquals(0, subscription.Payments.Count,"Student.Subscription","Esta assinatura não possui pagamentos."));
 
           
 
