@@ -84,9 +84,11 @@ namespace PaymentContext.Domain.Handlers
             //salvar as informações
             _studentRepository.CreateSubscription(student);
 
+            // Enviar E-mail de boas vindas
+            _emailServiceRepository.Send(student.Name.ToString(), student.Email.Address, "bem vindo ao balta.io", "Sua assinatura foi criada");
 
-
-
+            // Retornar informações
+            return new CommandResult(true, "Assinatura realizada com sucesso");
 
         }
     }
