@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PaymentContext.Shared.Command;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PaymentContext.Domain.Commands
 {
-    public class CommandResult
+    public class CommandResult : ICommandResult
     {
         public CommandResult()
         {

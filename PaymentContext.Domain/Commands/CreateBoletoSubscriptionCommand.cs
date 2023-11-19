@@ -1,4 +1,6 @@
-﻿using PaymentContext.Domain.Enums;
+﻿using Flunt.Notifications;
+using Flunt.Validations;
+using PaymentContext.Domain.Enums;
 using PaymentContext.Domain.ValueObjects;
 using PaymentContext.Shared.Command;
 using System;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PaymentContext.Domain.Commands
 {
-    public class CreateBoletoSubscriptionCommand : ICommand
+    public class CreateBoletoSubscriptionCommand : Notifiable, ICommand
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -39,8 +41,14 @@ namespace PaymentContext.Domain.Commands
 
         public void Validate()
         {
-            throw new NotImplementedException();
+            AddNotifications(new Contract()
+                .Requires()
+                .HasMinLen(FirstName, 3, "Name.FirstName", "Nome deve conter pelo menos 3 caracteres")
+                .HasMaxLen(FirstName, 40, "Name.FirstName", "Nome deve conter até 40 caracteres")
+            );
         }
+
+        
     }
 
 }
