@@ -6,6 +6,7 @@ using PaymentContext.Domain.Repository;
 using PaymentContext.Domain.ValueObjects;
 using PaymentContext.Shared.Command;
 using PaymentContext.Shared.Handlers;
+using PaymentContext.Shared.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,12 @@ namespace PaymentContext.Domain.Handlers
     public class SubscriptionHandlers : Notifiable, IHandler<CreateBoletoSubscriptionCommand>
     {
         private readonly IStudentRepository _studentRepository;
+        private readonly IEmailService _emailServiceRepository;
 
-        public SubscriptionHandlers(IStudentRepository studentRepository)
+        public SubscriptionHandlers(IStudentRepository studentRepository, IEmailService emailServiceRepository)
         {
             _studentRepository= studentRepository;
+            _emailServiceRepository = emailServiceRepository;
         }
 
         public ICommandResult Handle(CreateBoletoSubscriptionCommand command)
