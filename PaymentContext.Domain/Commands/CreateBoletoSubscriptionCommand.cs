@@ -1,5 +1,6 @@
 ﻿using PaymentContext.Domain.Enums;
 using PaymentContext.Domain.ValueObjects;
+using PaymentContext.Shared.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PaymentContext.Domain.Commands
 {
-    public class CreateBoletoSubscriptionCommand
+    public class CreateBoletoSubscriptionCommand : ICommand
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -36,6 +37,10 @@ namespace PaymentContext.Domain.Commands
         public string Country { get; set; }
         public string ZipCode { get; set; }
 
+        public void Validate()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }
