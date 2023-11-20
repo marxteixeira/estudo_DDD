@@ -23,7 +23,7 @@ namespace PaymentContext.Tests.Queries
                 _students.Add(new Student(
                     new Name("Aluno", i.ToString()),
                     new Document("1111111111" + i.ToString(), EDocumentType.CPF),
-                    new Email(i.ToString() + "@balta.io"),
+                    new Email(i.ToString() + "@marx.io"),
                     new Address("", "", "", "", "", "", "")
                 )) ;
             }
